@@ -20,6 +20,7 @@ open class BaseActivity : AppCompatActivity(){
                 return true
             }
         }
+        
         return super.onOptionsItemSelected(item)
     }
 }
