@@ -45,8 +45,9 @@ class HelperDB(
     fun buscarContatos(busca: String) : List<ContatosVO> {
         val db = readableDatabase ?: return mutableListOf()
         val lista = mutableListOf<ContatosVO>()
-        val sql = "SELECT * FROM $TABLE_NAME WHERE $COLUMNS_NOME LIKE '%?%'"
-        var cursor = db.rawQuery(sql, arrayOf(busca))
+        val sql = "SELECT * FROM $TABLE_NAME WHERE $COLUMNS_NOME LIKE ?"
+        var buscaComPercentual = "%$busca%"
+        var cursor = db.rawQuery(sql, arrayOf(buscaComPercentual))
         if(cursor == null){
             db.close()
             return mutableListOf()
